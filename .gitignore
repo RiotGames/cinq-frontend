@@ -4,12 +4,12 @@
 target
 .DS_Store
 config.js*
-build
 setenv.sh
 *.pid
 .vagrant
 logs
-!gulp/*
+build
+!gulp/tasks/build
 !source/javascript/components/logs
 *.pkl
 regions.json
@@ -19,8 +19,6 @@ aws_regions.json
 
 # Node builds etc
 node_modules
-bundle.js
-vendor.js
 
 # Dont check in certificates
 *.crt
@@ -36,7 +34,6 @@ vendor.js
 *.egg
 *.egg-info
 dist
-build
 eggs
 .eggs
 parts
