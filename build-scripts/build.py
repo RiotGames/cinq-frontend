@@ -92,8 +92,7 @@ def update_latest(bucket_name, version):
     bucket.put_object(
         Body=b'',
         Key=LATEST_TARBALL,
-        WebsiteRedirectLocation='/{}'.format(new_ver),
-        CacheControl='no-store, no-cache, must-revalidate'
+        WebsiteRedirectLocation='/{}'.format(new_ver)
     )
     log.info('Updated {} to point to {}'.format(LATEST_TARBALL, new_ver))
 
@@ -102,17 +101,17 @@ def update_latest(bucket_name, version):
               help='Name of the bucket to upload files to', metavar='BUCKET')
 @click.option('--version', default=None, help='Override build version', metavar='VERSION')
 @click.option('--force', is_flag=True, help='Force overwrite existing files')
-@click.option('--debug', is_flag=True, help='Enable verbose output')
-def build(bucket_name, version, force, debug):
+@click.option('--verbose', is_flag=True, help='Enable verbose output')
+def build(bucket_name, version, force, verbose):
     """Build and upload a new tarball
 
     Args:
         bucket_name (str): Name of the bucket to upload to
         version (str): Override build version. Defaults to using SCM based versioning (git tags)
         force (bool): Overwrite existing files in S3, if present
-        debug (bool): Verbose output
+        verbose (bool): Verbose output
     """
-    if debug:
+    if verbose:
         log.setLevel('DEBUG')
 
     if not version:
