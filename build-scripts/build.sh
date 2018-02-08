@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-PYENV=${TMPDIR}.pyenv
+PYENV=/tmp/.pyenv
 
 python3 -m venv ${PYENV}
 ${PYENV}/bin/pip install -U -r requirements.txt
