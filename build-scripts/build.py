@@ -120,6 +120,7 @@ def build(bucket_name, version, force, debug):
 
     release = "dev" if "dev" in version else "release"
     tarball = TARBALL_FORMAT.format(version)
+    tarball_path = os.path.join(tempfile.gettempdir(), tarball)
     s3_key = os.path.join(release, tarball)
 
     try:
@@ -131,7 +132,7 @@ def build(bucket_name, version, force, debug):
         return
 
     log.debug('Creating archive')
-    tar = tarfile.open(tarball, "w:gz")
+    tar = tarfile.open(tarball_path, "w:gz")
     for f in glob.iglob('dist/**', recursive=True):
         tar.add(f, recursive=False, filter=strip_path)
     tar.close()
@@ -144,7 +145,7 @@ def build(bucket_name, version, force, debug):
             log.error('File already exists in S3, use --force to overwrite')
             return
 
-        bucket.upload_file(tarball, os.path.join(release, tarball))
+        bucket.upload_file(tarball_path, os.path.join(release, tarball))
     except ClientError:
         log.exception('AWS API failure')
 
