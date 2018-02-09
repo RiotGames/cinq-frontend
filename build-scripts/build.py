@@ -132,8 +132,9 @@ def build(bucket_name, version, force, verbose):
 
     log.debug('Creating archive')
     tar = tarfile.open(tarball_path, "w:gz")
-    for f in glob.iglob('dist/**', recursive=True):
-        tar.add(f, recursive=False, filter=strip_path)
+    for root, dirnames, filenames in os.walk('dist'):
+        for f in filenames:
+            tar.add(os.path.join(root, f), recursive=False, filter=strip_path)
     tar.close()
 
     log.debug('Uploading {} to s3://{}/{}'.format(tarball, bucket_name, s3_key))
