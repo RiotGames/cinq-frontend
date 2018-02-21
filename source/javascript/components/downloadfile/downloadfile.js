@@ -9,22 +9,36 @@ angular
             icon: '@',
             label: '@',
             tooltip: '@',
-            filename: '<'
+            filename: '@',
+            formats: '<'
         },
         controller: FileDownloadController,
         controllerAs: 'vm',
         templateUrl: 'downloadfile/button.html'
     })
+    .constant('DLFILE_SUPPORTED_FORMATS', [
+        {type: 'json', name: 'JSON'},
+        {type: 'xlsx', name: 'Excel (xlsx)'},
+    ])
 ;
 
-FileDownloadController.$inject = ['$mdDialog'];
-function FileDownloadController($mdDialog) {
+FileDownloadController.$inject = ['$mdDialog', 'Utils', 'DLFILE_SUPPORTED_FORMATS'];
+function FileDownloadController($mdDialog, Utils, DLFILE_SUPPORTED_FORMATS) {
     const vm = this;
     vm.icon = vm.icon || 'file_download';
     vm.openDownloadDialog = openDownloadDialog;
 
     //region Functions
     function openDownloadDialog(evt) {
+        const fileFormats = DLFILE_SUPPORTED_FORMATS.filter(x => {
+            return vm.formats.includes(x.type);
+        });
+
+        if (fileFormats.length === 0) {
+            Utils.toast('No supported file formats found, unable to download file');
+            return;
+        }
+
         $mdDialog.show({
             controller: FileDownloadDialogController,
             controllerAs: 'vm',
@@ -37,7 +51,8 @@ function FileDownloadController($mdDialog) {
                     filename: vm.filename,
                     url: vm.url,
                     args: vm.args,
-                    title: vm.label
+                    title: vm.label,
+                    formats: fileFormats
                 }
             }
         });
@@ -53,15 +68,19 @@ function FileDownloadDialogController($mdDialog, $http, $rootScope, params) {
     vm.downloadFile = downloadFile;
     vm.cancel = $mdDialog.cancel;
     vm.url = params.url;
-    vm.args = params.args;
+    vm.args = params.args || {};
     vm.filename = params.filename || 'download';
     vm.title = params.title || 'Download File';
-
-    $rootScope.$on('download-start', downloadStart);
-    $rootScope.$on('download-complete', downloadComplete);
-    $rootScope.$on('download-failed', downloadFailed);
+    vm.formats = params.formats;
+    vm.$onInit = onInit;
 
     //region Functions
+    function onInit() {
+        $rootScope.$on('download-start', downloadStart);
+        $rootScope.$on('download-complete', downloadComplete);
+        $rootScope.$on('download-failed', downloadFailed);
+    }
+
     function downloadFile() {
         let args = angular.copy(vm.args);
         args.fileFormat = vm.form.fileFormat;

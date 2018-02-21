@@ -518,6 +518,21 @@ function config($stateProvider, $urlServiceProvider) {
                 }
             }
         })
+        .state('config.imex', {
+            url: '/config/imex',
+            component: 'configImportExport',
+            resolve: {
+                onImport: ConfigImportExport => {
+                    return ConfigImportExport.import;
+                },
+                onExport: ConfigImportExport => {
+                    return ConfigImportExport.export;
+                },
+                params: $transition$ => {
+                    return stateParams($transition$);
+                }
+            }
+        })
     ;
     //endregion
 

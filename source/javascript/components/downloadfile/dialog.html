@@ -19,8 +19,7 @@
                 <md-input-container class="md-block">
                     <label>Format</label>
                     <md-select ng-model="vm.form.fileFormat">
-                        <md-option value="json">JSON</md-option>
-                        <md-option value="xlsx">Excel (xlsx)</md-option>
+                        <md-option ng-repeat="itm in vm.formats" value="{{itm.type}}">{{itm.name}}</md-option>
                     </md-select>
                 </md-input-container>
 

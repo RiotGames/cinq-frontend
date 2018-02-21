@@ -7,14 +7,14 @@ angular
             params: '<',
             result: '<'
         },
-        controller: vpcListController,
+        controller: VpcListController,
         controllerAs: 'vm',
         templateUrl: 'vpc/list.html'
     })
 ;
 
-vpcListController.$inject = ['MetadataService', 'Utils'];
-function vpcListController(MetadataService, Utils) {
+VpcListController.$inject = ['MetadataService', 'Utils'];
+function VpcListController(MetadataService, Utils) {
     const vm = this;
     vm.vpcs = undefined;
     vm.vpcCount = 0;

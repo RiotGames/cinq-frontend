@@ -2,11 +2,9 @@
     "node": true,
     "strict": "globals",
     "esversion": 6,
+    "browser": true,
     "globals": {
-        "require": false,
-        "angular": false,
-        "$": false,
-        "document": false
+        "$": false
     },
     "predef": [
         "angular"
