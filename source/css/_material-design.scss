@@ -150,14 +150,21 @@ md-toast {
     }
 }
 
-.md-button.md-audit-success-theme {
-    & {
-        color: $color-green !important;
+.md-button {
+    &.md-audit-success-theme {
+        min-width: 50px;
     }
 
-    &.md-raised {
-        background-color: $color-green !important;
-        color: $color-light-grey !important;
+    &.md-audit-info-theme {
+        min-width: 50px;
+    }
+
+    &.md-audit-warning-theme {
+        min-width: 50px;
+    }
+
+    &.md-audit-error-theme {
+        min-width: 50px;
     }
 }
 

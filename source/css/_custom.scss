@@ -105,4 +105,13 @@
     background-color: $color-disclaimer-background;
     font-style: italic;
 }
+
+#drop-zone {
+    padding: 10% 0;
+    text-align: center;
+    min-height: 100px;
+    background-color: $color-light-grey;
+    border: 1px solid $color-medium-grey;
+    border-radius: 6px;
+}
 //endregion

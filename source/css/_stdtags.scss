@@ -80,6 +80,7 @@ textarea {
     transition-duration: 0.3s;
     transition-property: background-color, border;
     transition-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    border-radius: 6px;
 
     &:focus {
         @include border-radius(4px);

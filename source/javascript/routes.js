@@ -133,6 +133,21 @@ function config($stateProvider, $urlServiceProvider) {
                 }
             }
         })
+        .state('account.imex', {
+            url: '/accounts/imex',
+            component: 'accountImportExport',
+            resolve: {
+                onImport: Account => {
+                    return Account.import;
+                },
+                onExport: Account => {
+                    return Account.export;
+                },
+                params: $transition$ => {
+                    return stateParams($transition$);
+                }
+            }
+        })
     ;
     //endregion
 
@@ -515,6 +530,21 @@ function config($stateProvider, $urlServiceProvider) {
                 },
                 result: (ConfigNamespace, $transition$) => {
                     return ConfigNamespace.get(stateParams($transition$));
+                }
+            }
+        })
+        .state('config.imex', {
+            url: '/config/imex',
+            component: 'configImportExport',
+            resolve: {
+                onImport: ConfigImportExport => {
+                    return ConfigImportExport.import;
+                },
+                onExport: ConfigImportExport => {
+                    return ConfigImportExport.export;
+                },
+                params: $transition$ => {
+                    return stateParams($transition$);
                 }
             }
         })

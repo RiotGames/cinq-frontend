@@ -41,6 +41,14 @@ function AccountFactory($resource, API_PATH) {
             delete: {
                 method: 'DELETE'
             },
+            export: {
+                url: API_PATH + 'account/imex',
+                method: 'GET'
+            },
+            import: {
+                url: API_PATH + 'account/imex',
+                method: 'POST'
+            },
             query: {
                 url: API_PATH + 'account'
             },

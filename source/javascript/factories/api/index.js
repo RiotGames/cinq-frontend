@@ -2,6 +2,7 @@
 
 require('./account');
 require('./auditlog');
+require('./configimex');
 require('./configitem');
 require('./confignamespace');
 require('./dashboard');
