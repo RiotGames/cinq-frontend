@@ -31,7 +31,7 @@
                     <label for="contacts">Contacts:</label>
                 </td>
                 <td md-cell id="contacts">
-                    <span class="labels blue" ng-repeat="contact in vm.account.contacts">{{contact}}</span>
+                    <span ng-repeat="contact in vm.account.contacts" ng-bind-html="contact | contacttype">&nbsp;</span>
                 </td>
             </tr>
 

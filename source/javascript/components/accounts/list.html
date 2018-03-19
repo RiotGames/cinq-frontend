@@ -13,7 +13,7 @@
             <tbody md-body>
             <tr md-row ng-repeat="acct in vm.accounts" id="acct-{{acct.accountId}}">
                 <td md-cell style="width: 200px !important;">{{acct.accountName}}</td>
-                <td md-cell><span class="labels" ng-repeat="contact in acct.contacts" ng-class="{blue: contact.indexOf('@') > -1}">{{contact}}</span></td>
+                <td md-cell><span ng-repeat="contact in acct.contacts" ng-bind-html="contact | contacttype">&nbsp;</span></td>
                 <td md-cell style="text-align: center;" ng-bind-html="vm.accountTypeLabel(acct.accountType)"></td>
                 <td md-cell style="text-align: center;" ng-bind-html="acct.enabled | status">&nbsp;</td>
                 <td md-cell style="width: 40px; text-align: right; padding-right: 35px;">
