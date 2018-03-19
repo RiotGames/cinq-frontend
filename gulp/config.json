@@ -9,6 +9,9 @@
         "./source/html/*.html",
         "./source/html/**/*.html"
     ],
+    "resources": [
+        "./source/resources/*"
+    ],
     "templates": [
         "./source/javascript/components/**/*.html"
     ],

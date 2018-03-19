@@ -2,7 +2,6 @@
 
 // Minify HTML code
 const gulp      = require('gulp'),
-    concat      = require('gulp-concat'),
     config      = require('../../config.json'),
     htmlmin     = require('gulp-htmlmin'),
     tmplCache   = require('gulp-angular-templatecache')
@@ -22,5 +21,8 @@ gulp.task('build.html', function() {
             minifyCSS: true
         }))
         .pipe(tmplCache({standalone: true}))
-        .pipe(gulp.dest(config.build + '/js'))
+        .pipe(gulp.dest(config.build + '/js'));
+
+    gulp.src(config.resources)
+        .pipe(gulp.dest(config.build));
 });
