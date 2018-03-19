@@ -25,13 +25,9 @@
             </div>
 
             <div layout-gt-md="row">
-                <md-input-container class="md-block" flex>
-                    <label for="contacts">Contacts</label>
-                    <md-chips id="contacts" ng-model="vm.account.contacts" required></md-chips>
-
-                    <div ng-messages="accountEdit.contacts.$error" role="alert">
-                        <div ng-message="required" class="my-message">You must provide one or more contact email addresses or slack channels</div>
-                    </div>
+                <md-input-container class="md-block" flex="50">
+                    <label for="adGroupBase">AD Group Base</label>
+                    <input id="adGroupBase" type="text" ng-model="vm.account.adGroupBase" />
                 </md-input-container>
 
                 <span style="width: 40px"></span>
@@ -43,16 +39,20 @@
             </div>
 
             <div layout-gt-md="row">
-                <md-input-container class="md-block" flex="50">
-                    <label for="adGroupBase">AD Group Base</label>
-                    <input id="adGroupBase" type="text" ng-model="vm.account.adGroupBase" />
+                <md-input-container class="md-block" flex>
+                    <label for="requiredRoles">Required Roles</label>
+                    <md-chips id="requiredRoles" ng-model="vm.account.requiredRoles" placeholder="Enter group" flex></md-chips>
                 </md-input-container>
             </div>
 
-            <md-input-container class="md-block" flex>
-                <label for="requiredRoles">Required Roles</label>
-                <md-chips id="requiredRoles" ng-model="vm.account.requiredRoles" placeholder="Enter group" flex></md-chips>
-            </md-input-container>
+            <div layout-gt-md="row">
+                <md-input-container class="md-block" flex>
+                    <label for="contacts">Contacts</label>
+                    <md-chips id="contacts" ng-model="vm.account.contacts" md-transform-chip="vm.onChipAdd($chip)">
+                        <md-chip-template>{{$chip.value}}</md-chip-template>
+                    </md-chips>
+                </md-input-container>
+            </div>
         </md-content>
     </section>
 

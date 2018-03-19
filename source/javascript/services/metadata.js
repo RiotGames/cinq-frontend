@@ -13,6 +13,7 @@ function MetadataService($http, $rootScope, Utils, API_PATH) {
     let menuItems = {};
     let currentUser = {};
     let resourceTypes = {};
+    let notifiers = [];
 
     let initialized = false;
     const utils = Utils;
@@ -23,6 +24,7 @@ function MetadataService($http, $rootScope, Utils, API_PATH) {
         menuItems: menuItems,
         currentUser: currentUser,
         resourceTypes: resourceTypes,
+        notifiers: notifiers,
         load: load
     };
 
@@ -53,6 +55,13 @@ function MetadataService($http, $rootScope, Utils, API_PATH) {
 
                     for (let region of response.data.regions) {
                         regions.push(region);
+                    }
+
+                    for (let notifier of response.data.notifiers) {
+                        notifiers.push({
+                            type: notifier.type,
+                            validation: new RegExp(notifier.validation, 'i')
+                        });
                     }
 
                     for (let [k, v] of Object.entries(response.data.menuItems)) {
