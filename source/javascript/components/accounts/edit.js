@@ -21,7 +21,6 @@ function AccountEditController(Utils, MetadataService, $mdDialog) {
     vm.account = {requiredRoles: [ ]};
     vm.update = update;
     vm.goto = Utils.goto;
-    vm.showAddContact = showAddContact;
     vm.onChipAdd = onChipAdd;
     vm.$onInit = onInit;
 
@@ -47,22 +46,6 @@ function AccountEditController(Utils, MetadataService, $mdDialog) {
         data.contacts = JSON.stringify(vm.account.contacts);
 
         vm.onAccountUpdate(vm.account, onUpdateSuccess, Utils.onLoadFailure);
-    }
-
-    function showAddContact(ev) {
-        $mdDialog.show({
-            controller: AccountContactAddController,
-            controllerAs: 'vm',
-            templateUrl: 'accounts/addcontact.html',
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            parent: angular.element(document.body),
-            locals: {
-                params: {
-                    accountName: vm.account.accountName
-                }
-            }
-        });
     }
 
     function onChipAdd(chip) {
