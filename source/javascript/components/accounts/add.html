@@ -25,13 +25,9 @@
             </div>
 
             <div layout-gt-md="row">
-                <md-input-container class="md-block" flex>
-                    <label>Contacts</label>
-                    <md-chips id="contacts" ng-model="vm.account.contacts" required></md-chips>
-
-                    <div ng-messages="accountAdd.contacts.$error" role="alert">
-                        <div ng-message="required" class="my-message">You must provide one or more contact email addresses or slack channels</div>
-                    </div>
+                <md-input-container class="md-block" flex="50">
+                    <label>AD Group Base</label>
+                    <input name="adGroupBase" type="text" ng-model="vm.account.adGroupBase" />
                 </md-input-container>
 
                 <span style="width: 40px"></span>
@@ -42,17 +38,19 @@
                 </md-input-container>
             </div>
 
-            <div layout-gt-md="row">
-                <md-input-container class="md-block" flex="50">
-                    <label>AD Group Base</label>
-                    <input name="adGroupBase" type="text" ng-model="vm.account.adGroupBase" />
-                </md-input-container>
-            </div>
-
             <md-input-container class="md-block" flex>
                 <label>Required Groups</label>
                 <md-chips ng-model="vm.account.requiredRoles" placeholder="Enter role"></md-chips>
             </md-input-container>
+
+            <div layout-gt-md="row">
+                <md-input-container class="md-block" flex>
+                    <label for="contacts">Contacts</label>
+                    <md-chips id="contacts" ng-model="vm.account.contacts" md-transform-chip="vm.onChipAdd($chip)">
+                        <md-chip-template>{{$chip.value}}</md-chip-template>
+                    </md-chips>
+                </md-input-container>
+            </div>
         </md-content>
     </section>
 

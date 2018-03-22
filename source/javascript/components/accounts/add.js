@@ -12,8 +12,8 @@ angular
     })
 ;
 
-AccountAddController.$inject = ['Utils'];
-function AccountAddController(Utils) {
+AccountAddController.$inject = ['$mdDialog', 'Utils', 'MetadataService'];
+function AccountAddController($mdDialog, Utils, MetadataService) {
     const vm = this;
     // @type {Account}
     vm.account = {
@@ -24,7 +24,7 @@ function AccountAddController(Utils) {
         enabled: true,
         requiredRoles: [ ]
     };
-
+    vm.onChipAdd = onChipAdd;
     vm.add = add;
 
     //region Functions
@@ -45,5 +45,64 @@ function AccountAddController(Utils) {
             vm.onAccountCreate(accountInfo, onAddSuccess, onAddFailure);
         }
     }
+
+    function onChipAdd(chip) {
+        let dlg = {
+            controller: AccountContactAddController,
+            controllerAs: 'vm',
+            templateUrl: 'accounts/addcontact.html',
+            clickOutsideToClose: true,
+            parent: angular.element(document.body),
+            locals: {
+                params: {
+                    accountName: vm.account.accountName,
+                }
+            }
+        };
+
+        $mdDialog.show(dlg).then(
+            result => {
+                for (let notifier of MetadataService.notifiers) {
+                    if (notifier.type === result) {
+                        if (notifier.validation.exec(chip)) {
+                            vm.account.contacts.push({
+                                type: result,
+                                value: chip
+                            });
+                        } else {
+                            Utils.toast('Invalid formatted contact for ' + result, 'error');
+                        }
+                        return;
+                    }
+                }
+
+                Utils.toast('Invalid contact type', 'error');
+            },
+            res => {}
+        );
+
+        return null;
+    }
     //endregion
+}
+
+AccountContactAddController.$inject = ['$mdDialog', 'MetadataService', 'params'];
+function AccountContactAddController($mdDialog, MetadataService, params) {
+    const vm = this;
+    vm.form = {
+        type: undefined
+    };
+    vm.supportedTypes = MetadataService.notifiers;
+    vm.accountName = params.accountName;
+    vm.cancel = $mdDialog.cancel;
+    vm.addContact = addContact;
+    vm.$onInit = onInit;
+
+    // region Functions
+    function onInit() {}
+
+    function addContact() {
+        $mdDialog.hide(vm.form.type);
+    }
+    // endregion
 }
