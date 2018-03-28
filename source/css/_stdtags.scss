@@ -77,15 +77,15 @@ pre, .code-box {
 }
 
 textarea {
+    @include border-radius(4px);
+    border: 1px solid $color-grey !important;
     transition-duration: 0.3s;
     transition-property: background-color, border;
     transition-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
-    border-radius: 6px;
+    min-height: 50px !important;
 
     &:focus {
-        @include border-radius(4px);
-        border: 1px solid $color-grey !important;
-        background-color: $color-light-grey;
+        background-color: $color-light-grey !important;
     }
 
     &.error {

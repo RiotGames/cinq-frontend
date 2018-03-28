@@ -19,6 +19,7 @@ require('./logout');
 require('./requiredtag');
 require('./role');
 require('./search');
+require('./template');
 require('./user');
 require('./volumeaudit');
 require('./vpc');
