@@ -705,6 +705,58 @@ function config($stateProvider, $urlServiceProvider) {
     ;
     //endregion
 
+    //region Templates
+    $stateProvider
+        .state('template', {
+            abstract: true,
+            parent: 'main',
+            template: '<ui-view/>'
+        })
+        .state('template.list', {
+            url: '/templates/list',
+            component: 'templateList',
+            resolve: {
+                onTemplateDelete: Template => {
+                    return Template.delete;
+                },
+                onTemplateImport: Template => {
+                    return Template.import;
+                },
+                params: ($transition$) => {
+                    return stateParams($transition$);
+                },
+                result: (Template, $transition$) => {
+                    return Template.query(stateParams($transition$));
+                }
+            }
+        })
+        .state('template.add', {
+            url: '/template/add',
+            component: 'templateAdd',
+            resolve: {
+                onTemplateCreate: Template => {
+                    return Template.create;
+                },
+            }
+        })
+        .state('template.edit', {
+            url: '/template/edit/{templateName:string}',
+            component: 'templateEdit',
+            resolve: {
+                onTemplateUpdate: Template => {
+                    return Template.update;
+                },
+                params: ($transition$) => {
+                    return stateParams($transition$);
+                },
+                result: (Template, $transition$) => {
+                    return Template.get(stateParams($transition$));
+                }
+            }
+        })
+    ;
+    //endregion
+
     //region EBS Volumes
     $stateProvider
         .state('ebs', {
