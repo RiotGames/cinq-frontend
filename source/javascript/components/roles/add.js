@@ -12,8 +12,8 @@ angular
     })
 ;
 
-RoleAddController.$inject = ['$rootScope', 'Utils'];
-function RoleAddController($rootScope, Utils) {
+RoleAddController.$inject = ['Utils'];
+function RoleAddController(Utils) {
     const vm = this;
     vm.role = {
         name: undefined,
@@ -23,17 +23,7 @@ function RoleAddController($rootScope, Utils) {
     vm.$onInit = onInit;
 
     // region Functions
-    function onInit() {
-        $('#colorPicker').spectrum({
-            color: vm.role.color,
-            showButtons: false,
-            showPalette: true,
-            hideAfterPaletteSelect: true,
-            clickoutFiresChange: true,
-            change: updateColor,
-            move: updateColor
-        });
-    }
+    function onInit() { }
 
     function create() {
         vm.onRoleCreate(vm.role, onCreateSuccess, Utils.onLoadFailure);
@@ -42,11 +32,6 @@ function RoleAddController($rootScope, Utils) {
     function onCreateSuccess() {
         Utils.toast('Successfully created role', 'success');
         Utils.goto('role.list');
-    }
-
-    function updateColor(color) {
-        vm.role.color = color.toHexString().toUpperCase();
-        $rootScope.$apply();
     }
     // endregion
 }

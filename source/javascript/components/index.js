@@ -1,6 +1,11 @@
 'use strict';
 
-angular.module('cloud-inquisitor.components', ['templates']);
+require('angular-spectrum-colorpicker');
+
+angular.module('cloud-inquisitor.components', [
+    'templates',
+    'angularSpectrumColorpicker'
+]);
 
 require('./accounts');
 require('./auditlog');
