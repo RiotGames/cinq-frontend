@@ -8,8 +8,11 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" flex>
-                    <label>Color</label>
-                    <input id="colorPicker" name="color" type="color" ng-model="vm.role.color" />
+                    <spectrum-colorpicker
+                            ng-model="vm.role.color"
+                            options="{showButtons: false, showPalette: true,hideAfterPaletteSelect: true, clickoutFiresChange: true, preferredFormat: 'hex'}"
+                    >
+                    </spectrum-colorpicker>
                 </md-input-container>
             </div>
         </md-content>

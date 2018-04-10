@@ -31,21 +31,6 @@ function RoleEditController($rootScope, Utils) {
 
     function onLoadSuccess(response) {
         vm.role = response.role;
-
-        $('#colorPicker').spectrum({
-            color: vm.role.color,
-            showButtons: false,
-            showPalette: true,
-            hideAfterPaletteSelect: true,
-            clickoutFiresChange: true,
-            change: updateColor,
-            move: updateColor
-        });
-    }
-
-    function updateColor(color) {
-        vm.role.color = color.toHexString().toUpperCase();
-        $rootScope.$apply();
     }
 
     function update() {

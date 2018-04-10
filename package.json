@@ -34,7 +34,7 @@
         "md-color-picker": "0.2.6",
         "raphael": "2.2.7",
         "smoothscroll-polyfill": "0.4.3",
-        "spectrum-colorpicker": "1.8.0",
+        "angular-spectrum-colorpicker": "1.4.5",
         "zxcvbn": "4.4.2"
     },
     "devDependencies": {
