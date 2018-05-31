@@ -14,13 +14,15 @@ angular
  * @property {object} properties Issue properties
  * @property {number} properties.accountId ID of the account the instance was launched in
  * @property {number} properties.location Name of the location of the instance (eg. AWS Region)
+ * @property {string} properties.resourceId ID of the resource
+ * @property {string} properties.resourceType Resource type
  * @property {number} properties.state Current state of the issue
+ * @property {number} properties.created Unix Epoc timestamp the issue was created
  * @property {Date} properties.lastChange Date the status was last updated for the instance
- * @property {Date} properties.nextChange Date the instance will process to the next state, if not fixed
- * @property {Date} properties.shutdownOn Date the instance will be shutdown if not fixed
+ * @property {string} properties.lastAlert Last alert sent
  * @property {string[]} properties.missingTags Array of the tags missing from the instance
  * @property {string[]} properties.notes Array of optional notes for the instance
- * @property {EC2Instance} instance EC2Instance object
+ * @property {Resource} resource Resource object
  */
 
 RequiredTagFactory.$inject = ['$resource', 'API_PATH'];
