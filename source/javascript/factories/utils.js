@@ -128,11 +128,12 @@ function Utils($injector, $window, Session) {
     /**
      * Return the value of the name tag of an resource if preset, or alternative return the resource id
      * @param {Resource} resource Resource object
-     * @param {boolean} fallback Fallback to instanceID if the name was not found
+     * @param {boolean} fallback Fallback to instanceID if the name tag was not found
+     * @param {boolean} includeId Include instance ID even if the name tag is found
      * @returns {string|undefined} Value of the Name tag if present. If the name is not present and `fallback` is true, the instance
      * id will be returned, or false.
      */
-    function getResourceName(resource, fallback) {
+    function getResourceName(resource, fallback, includeId=true) {
         if (fallback === undefined) {
             fallback = true;
         }
@@ -143,7 +144,7 @@ function Utils($injector, $window, Session) {
 
         for (let tag of resource.tags) {
             if (tag.key.toLowerCase() === 'name' && tag.value.trim().length > 0) {
-                return tag.value;
+                return includeId ? tag.value + ' (' + resource.resourceId + ')' : tag.value;
             }
         }
 
