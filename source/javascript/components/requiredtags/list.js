@@ -25,6 +25,7 @@ function RequiredTagsController(MetadataService, Utils, ROLE_NOC, ROLE_ADMIN) {
     vm.showDetails = Utils.showDetails;
     vm.filters = {};
     vm.buttons = {};
+    vm.formats = ['xlsx', 'json'];
     vm.updateFilters = updateFilters;
     vm.resetFilters = resetFilters;
     vm.updatePath = updatePath;
@@ -72,19 +73,6 @@ function RequiredTagsController(MetadataService, Utils, ROLE_NOC, ROLE_ADMIN) {
                 values: vm.regions,
                 selected: vm.params.regions,
                 placeholder: 'All Regions'
-            },
-            state: {
-                type: 'select',
-                label: 'Instance State',
-                multiple: false,
-                values: {
-                    'Both': undefined,
-                    'Running': 'running',
-                    'Stopped': 'stopped'
-                },
-                searchable: true,
-                selected: vm.params.state,
-                placeholder: 'Both'
             }
         };
     }
@@ -98,8 +86,7 @@ function RequiredTagsController(MetadataService, Utils, ROLE_NOC, ROLE_ADMIN) {
             page: 1,
             count: 100,
             accounts: [],
-            regions: [],
-            state: undefined
+            regions: []
         };
 
         vm.updatePath();
