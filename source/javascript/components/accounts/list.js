@@ -77,13 +77,11 @@ function AccountListController($mdDialog, Utils) {
             case 'AWS':
                 color = 'orange';
                 break;
-            case 'DNS_CLOUDFLARE':
+            case 'DNS: CloudFlare':
                 color = 'yellow';
-                type = 'DNS: CloudFlare';
                 break;
-            case 'DNS_AXFR':
+            case 'DNS: AXFR':
                 color = 'blue';
-                type = 'DNS: AXFR';
                 break;
         }
         return '<span class="labels ' + color + '">' + type + '</span>';
