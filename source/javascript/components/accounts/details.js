@@ -13,13 +13,16 @@ angular
     })
 ;
 
-AccountDetailsController.$inject = ['Utils'];
-function AccountDetailsController(Utils) {
+AccountDetailsController.$inject = ['Utils', 'MetadataService'];
+function AccountDetailsController(Utils, MetadataService) {
     const vm = this;
     // @type {Account}
     vm.account = undefined;
+    vm.accountTypes = MetadataService.accountTypes;
     vm.goto = Utils.goto;
     vm.$onInit = onInit;
+    vm.getPropertyName = Utils.getAccountTypePropertyName;
+    vm.getPropertyType = Utils.getAccountTypePropertyType;
 
     //region Functions
     function onInit() {
@@ -29,5 +32,4 @@ function AccountDetailsController(Utils) {
     function onLoadSuccess(response) {
         vm.account = response.account;
     }
-    //endregion
 }

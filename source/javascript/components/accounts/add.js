@@ -18,14 +18,17 @@ function AccountAddController($mdDialog, Utils, MetadataService) {
     // @type {Account}
     vm.account = {
         accountName: undefined,
-        accountNumber: undefined,
+        accountType: undefined,
         contacts: [ ],
-        adGroupBase: undefined,
         enabled: true,
-        requiredRoles: [ ]
+        requiredRoles: [ ],
+        properties: {},
     };
+    vm.accountTypes = MetadataService.accountTypes;
     vm.onChipAdd = onChipAdd;
     vm.add = add;
+    vm.onAccountTypeChange = onAccountTypeChange;
+    vm.getAccountTypeProperties = Utils.getAccountTypeProperties;
 
     //region Functions
     function onAddFailure(response) {
@@ -43,6 +46,14 @@ function AccountAddController($mdDialog, Utils, MetadataService) {
         } else {
             const accountInfo = Object.assign({}, vm.account, {enabled: vm.account.enabled ? 1 : 0});
             vm.onAccountCreate(accountInfo, onAddSuccess, onAddFailure);
+        }
+    }
+
+    function onAccountTypeChange() {
+        vm.account.properties = {};
+        const properties = vm.getAccountTypeProperties();
+        for (let prop of properties) {
+            vm.account.properties[prop.key] = prop.default;
         }
     }
 

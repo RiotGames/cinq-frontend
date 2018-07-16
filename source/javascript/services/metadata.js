@@ -9,6 +9,7 @@ MetadataService.$inject = ['$http', '$rootScope', 'Utils', 'API_PATH'];
 
 function MetadataService($http, $rootScope, Utils, API_PATH) {
     let accounts = [];
+    let accountTypes = [];
     let regions = [];
     let menuItems = {};
     let currentUser = {};
@@ -20,6 +21,7 @@ function MetadataService($http, $rootScope, Utils, API_PATH) {
 
     let service = {
         accounts: accounts,
+        accountTypes: accountTypes,
         regions: regions,
         menuItems: menuItems,
         currentUser: currentUser,
@@ -51,6 +53,10 @@ function MetadataService($http, $rootScope, Utils, API_PATH) {
                 if (response.status === 200) {
                     for (let acct of response.data.accounts) {
                         accounts.push(acct);
+                    }
+
+                    for (let acctType of response.data.accountTypes) {
+                        accountTypes.push(acctType);
                     }
 
                     for (let region of response.data.regions) {

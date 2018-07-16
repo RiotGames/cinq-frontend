@@ -1,4 +1,3 @@
-//region Custom classes
 .menu {
     background-color: transparent;
     border: none;
@@ -114,4 +113,19 @@
     border: 1px solid $color-medium-grey;
     border-radius: 6px;
 }
-//endregion
+
+.accountPropertiesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 8px;
+    grid-column-gap: 16px;
+}
+
+.tableGrid {
+    display: grid;
+    grid-template-columns: .25fr 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 8px;
+    grid-column-gap: 16px;
+}

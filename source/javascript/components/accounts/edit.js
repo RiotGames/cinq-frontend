@@ -19,10 +19,12 @@ function AccountEditController(Utils, MetadataService, $mdDialog) {
     const vm = this;
     // @type {Account}
     vm.account = {requiredRoles: [ ]};
+    vm.accountTypes = MetadataService.accountTypes;
     vm.update = update;
     vm.goto = Utils.goto;
     vm.onChipAdd = onChipAdd;
     vm.$onInit = onInit;
+    vm.getAccountTypeProperties = Utils.getAccountTypeProperties;
 
     //region Functions
     function onInit() {
