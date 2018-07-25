@@ -58,10 +58,7 @@ function Utils($injector, $window, Session) {
         getResourceTypeName: getResourceTypeName,
         resourceTypeToRoute: resourceTypeToRoute,
         showDetails: showDetails,
-        validateEmail: validateEmail,
-        getAccountTypeProperties: getAccountTypeProperties,
-        getAccountTypePropertyName: getAccountTypePropertyName,
-        getAccountTypePropertyType: getAccountTypePropertyType,
+        validateEmail: validateEmail
     };
 
     //region Functions
@@ -392,6 +389,9 @@ function Utils($injector, $window, Session) {
             case 'DNS Zone':
                 return 'dns.zone.details';
 
+            case 'Elastic Load Balancer':
+                return 'elb.details';
+
             default:
                 return undefined;
             // case 'DNS Record':
@@ -426,52 +426,6 @@ function Utils($injector, $window, Session) {
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
-    }
-
-    /**
-     * Returns the name an account type property by key
-     * @param {string} key Key of the property to lookup
-     * @return {string}
-     */
-    function getAccountTypeProperties(accountType) {
-        const metadata = $injector.get('MetadataService');
-        for (let type of metadata.accountTypes) {
-            if (type.name === accountType) {
-                return type.properties;
-            }
-        }
-
-        return undefined;
-    }
-
-    function getAccountTypePropertyName(accountType, key) {
-        const metadata = $injector.get('MetadataService');
-        for (let type of metadata.accountTypes) {
-            if (type.name === accountType) {
-                for (let property of type.properties) {
-                    if (property.key === key) {
-                        return property.name;
-                    }
-                }
-            }
-        }
-
-        return undefined;
-    }
-
-    function getAccountTypePropertyType(accountType, key) {
-        const metadata = $injector.get('MetadataService');
-        for (let type of metadata.accountTypes) {
-            if (type.name === accountType) {
-                for (let property of type.properties) {
-                    if (property.key === key) {
-                        return property.type;
-                    }
-                }
-            }
-        }
-
-        return undefined;
     }
     //endregion
 }

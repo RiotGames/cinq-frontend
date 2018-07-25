@@ -871,6 +871,47 @@ function config($stateProvider, $urlServiceProvider) {
     ;
     //endregion
 
+    //region ELBs
+    $stateProvider
+        .state('elb', {
+            abstract: true,
+            parent: 'main',
+            template: '<ui-view/>'
+        })
+        .state('elb.list', {
+            url: '/elb/list?{page:int}&{count:int}&{accounts:string}&{regions:string}&{numInstances:int}',
+            params: {
+                page: 1,
+                count: 20,
+                accounts: [],
+                regions: [],
+                numInstances: undefined
+            },
+            component: 'elbList',
+            resolve: {
+                params: $transition$ => {
+                    return stateParams($transition$);
+                },
+                result: (ELB, Utils, $transition$) => {
+                    return ELB.query(stateParams($transition$));
+                }
+            }
+        })
+        .state('elb.details', {
+            url: '/elb/details/{resourceId:string}',
+            component: 'elbDetails',
+            resolve: {
+                params: ($transition$) => {
+                    return stateParams($transition$);
+                },
+                result: (ELB, $transition$) => {
+                    return ELB.get(stateParams($transition$));
+                }
+            }
+        })
+    ;
+    //endregion
+
     $urlServiceProvider.rules.otherwise('/dashboard');
 }
 
