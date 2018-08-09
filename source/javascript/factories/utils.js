@@ -392,6 +392,9 @@ function Utils($injector, $window, Session) {
             case 'DNS Zone':
                 return 'dns.zone.details';
 
+            case 'Elastic Load Balancer':
+                return 'elb.details';
+
             default:
                 return undefined;
             // case 'DNS Record':

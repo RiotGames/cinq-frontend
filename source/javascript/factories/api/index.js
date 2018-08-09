@@ -23,3 +23,4 @@ require('./template');
 require('./user');
 require('./volumeaudit');
 require('./vpc');
+require('./elb');

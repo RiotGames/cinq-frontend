@@ -28,3 +28,4 @@ require('./templates');
 require('./users');
 require('./volumeaudit');
 require('./vpc');
+require('./elb');
