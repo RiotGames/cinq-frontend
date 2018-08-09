@@ -882,7 +882,7 @@ function config($stateProvider, $urlServiceProvider) {
             url: '/elb/list?{page:int}&{count:int}&{accounts:string}&{regions:string}&{numInstances:int}',
             params: {
                 page: 1,
-                count: 20,
+                count: 100,
                 accounts: [],
                 regions: [],
                 numInstances: undefined
