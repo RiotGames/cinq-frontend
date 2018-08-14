@@ -831,6 +831,37 @@ function config($stateProvider, $urlServiceProvider) {
     ;
     //endregion
 
+    // region S3 Buckets
+    $stateProvider
+        .state('s3', {
+            abstract: true,
+            parent: 'main',
+            template: '<ui-view/>'
+        })
+        .state('s3.list', {
+            url: '/s3/list?{page:int}&{count:int}&{accounts:string}&{location:string}&{resourceId:string}&' +
+            '{websiteEnabled:string}',
+            params: {
+                page: 1,
+                count: 100,
+                accounts: [],
+                location: [],
+                resourceId: undefined,
+                websiteEnabled: undefined,
+            },
+            component: 's3List',
+            resolve: {
+                params: $transition$ => {
+                    return stateParams($transition$);
+                },
+                result: (S3Bucket, Utils, $transition$) => {
+                    return S3Bucket.query(stateParams($transition$));
+                }
+            }
+        })
+    ;
+    //endregion
+
     //region AuditLog
     $stateProvider
         .state('auditlog', {

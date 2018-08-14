@@ -24,6 +24,7 @@ require('./logs');
 require('./requiredtags');
 require('./roles');
 require('./search');
+require('./s3');
 require('./templates');
 require('./users');
 require('./volumeaudit');
