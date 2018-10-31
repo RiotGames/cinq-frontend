@@ -64,7 +64,7 @@ function S3ListController(MetadataService, Utils) {
                 values: {
                     'Enabled': 'Enabled',
                     'Disabled': 'Disabled',
-                    'Unavailable': 'Unavailable'
+                    'cinq cant poll': 'cinq cant poll'
                 },
                 selected: vm.params.websiteEnabled
             }
