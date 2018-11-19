@@ -30,7 +30,11 @@ function DNSZoneFactory($resource, API_PATH) {
             resourceId: '@resourceId'
         },
         {
-            query: {url: API_PATH + 'dns/zones'}
+            query: {url: API_PATH + 'dns/zones'},
+            export: {
+                url: API_PATH + 'dns/zonesExport',
+                method: 'GET'
+            }
         }
     );
 }

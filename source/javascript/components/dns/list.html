@@ -39,4 +39,6 @@
             md-limit-options="[10, 25, 50]"
             md-total="{{vm.zoneCount}}">
     </md-table-pagination>
+
+    <download-file url="/api/v1/dns/zonesExport" formats="vm.formats" args="vm.params" label="Download report" tooltip="Download report as JSON"></download-file>
 </section>
