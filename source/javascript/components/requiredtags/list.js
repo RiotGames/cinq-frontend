@@ -25,7 +25,7 @@ function RequiredTagsController(MetadataService, Utils, ROLE_NOC, ROLE_ADMIN) {
     vm.showDetails = Utils.showDetails;
     vm.filters = {};
     vm.buttons = {};
-    vm.formats = ['xlsx', 'json'];
+    vm.formats = ['json'];
     vm.updateFilters = updateFilters;
     vm.resetFilters = resetFilters;
     vm.updatePath = updatePath;

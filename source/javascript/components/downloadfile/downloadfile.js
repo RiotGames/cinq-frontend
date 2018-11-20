@@ -18,7 +18,6 @@ angular
     })
     .constant('DLFILE_SUPPORTED_FORMATS', [
         {type: 'json', name: 'JSON'},
-        {type: 'xlsx', name: 'Excel (xlsx)'},
     ])
 ;
 

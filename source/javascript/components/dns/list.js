@@ -19,6 +19,7 @@ function DNSZoneListController(Utils) {
     // @type {DNSZone[]}
     vm.zones = undefined;
     vm.zoneCount = 0;
+    vm.formats = ['json'];
     vm.showDetails = Utils.showDetails;
     vm.updatePath = updatePath;
     vm.updateFilters = updateFilters;
