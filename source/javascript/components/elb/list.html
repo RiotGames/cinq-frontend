@@ -52,4 +52,6 @@
             md-limit-options="[25, 50, 100]"
             md-total="{{vm.elbCount}}">
     </md-table-pagination>
+    
+    <download-file url="/api/v1/elb/export" formats="vm.formats" args="vm.params" label="Download report" tooltip="Download report as JSON"></download-file>
 </section>

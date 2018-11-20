@@ -40,6 +40,10 @@ function ELBFactory($resource, API_PATH) {
         {
             query: {
                 url: API_PATH + 'elb'
+            },
+            export: {
+                url: API_PATH + 'elb/export',
+                method: 'GET'
             }
         }
     );
