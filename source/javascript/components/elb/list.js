@@ -22,7 +22,7 @@ function ELBListController(MetadataService, Utils) {
     vm.regions = MetadataService.regions;
     vm.showDetails = Utils.showDetails;
     vm.filters = {};
-    vm.formats=['json']
+    vm.formats = ['json'];
     vm.updateFilters = updateFilters;
     vm.resetFilters = resetFilters;
     vm.updatePath = updatePath;
