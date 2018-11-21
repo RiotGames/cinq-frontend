@@ -115,8 +115,16 @@ function FileDownloadDialogController($mdDialog, $http, $rootScope, params) {
             .off('click')
             .on('click', () => {
                 const link = document.createElement('a');
+                var binary_string = window.atob(data);
+                var len = binary_string.length;
+                var bytes = new Uint8Array(len);
+                for (var i = 0; i < len; i++) {
+                    bytes[i] = binary_string.charCodeAt(i);
+                }
+                var blob = new Blob([bytes.buffer], {type: 'application/json'});
+
                 link.download = [vm.filename, vm.form.fileFormat].join('.');
-                link.href = 'data:application/json;base64,' + data;
+                link.href = window.URL.createObjectURL(blob);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
